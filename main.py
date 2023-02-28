@@ -16,9 +16,10 @@ def pars_name_and_bdate(res):
 token =  input('Input token: ')
 id_group = input('Input name or id group: ')  # 'presny_moscow'
 method = 'groups.getMembers' # choice method
+version_vk = 5.131 # 28/02/2023
 
 param = {'access_token': token,
-         'v': 5.131, 
+         'v': version_vk, 
          'group_id': id_group}
 
 answer_of_get = requests.get(url=f'https://api.vk.com/method/{method}', params=param)
@@ -28,7 +29,7 @@ if answer_of_get.status_code == 200:
     print('Бежим по айдишникам...')
     for users in data['response']['items']:
         user_id = {'access_token': token,
-                'v': 5.131, 
+                'v': version_vk, 
                 'user_ids': users,
                 'fields': 'bdate'}
         r_user = pars_name_and_bdate(
